@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+<div class="container text-center p-5 mt-5 mb-5 rounded">
+  <h1>Modifica Cliente</h1>
+  <div class="row justify-content-center">
+      <form [formGroup]="form" (submit)="onsubmit(form)" *ngIf="cliente">
+        <div class="form-group mb-2">
+          <label for="ragioneSociale">Ragione Sociale</label>
+          <input formControlName="ragioneSociale" name="ragioneSociale" class="form-control" type="text" id="ragioneSociale" required [(ngModel)]="cliente.ragioneSociale"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="partitaIva">Partita Iva</label>
+          <input formControlName="partitaIva" name="partitaIva" class="form-control" type="text" id="partitaIva" required [(ngModel)]="cliente.partitaIva"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="email">Email</label>
+          <input formControlName="email" name="email" class="form-control" type="email" id="email" required [(ngModel)]="cliente.email"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="nomeContatto">Nome Contatto</label>
+          <input formControlName="nomeContatto" name="nomeContatto" class="form-control" type="text" id="nomeContatto" required [(ngModel)]="cliente.nomeContatto"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="cognomeContatto">Cognome Contatto</label>
+          <input formControlName="cognomeContatto" name="cognomeContatto" class="form-control" type="text" id="cognomeContatto" required [(ngModel)]="cliente.cognomeContatto"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="pec">Pec</label>
+          <input formControlName="pec" name="pec" class="form-control" type="text" id="pec" required [(ngModel)]="cliente.pec"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="tipoCliente">Tipo Cliente</label>
+          <select name="tipoCliente" id="tipoCliente" formControlName="tipoCliente" required class="form-select form-select-sm" [(ngModel)]="cliente.tipoCliente">
+            <option [value]="tipo" *ngFor="let tipo of tipi">{{tipo}}</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
+          <label for="emailContatto">Email Contatto</label>
+          <input formControlName="emailContatto" name="emailContatto" class="form-control" type="email" id="emailContatto" required [(ngModel)]="cliente.emailContatto"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="via">Via</label>
+          <input formControlName="via" name="via" class="form-control" type="text" id="via" required [(ngModel)]="cliente.indirizzoSedeOperativa.via"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="civico">Civico</label>
+          <input formControlName="civico" name="civico" class="form-control" type="text" id="civico" required [(ngModel)]="cliente.indirizzoSedeOperativa.civico"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="cap">Cap</label>
+          <input formControlName="cap" name="cap" class="form-control" type="text" id="cap" required [(ngModel)]="cliente.indirizzoSedeOperativa.cap"/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="comune">Comune</label>
+          <select name="comune" id="comune" formControlName="comune" required class="form-select form-select-sm">
+            <option [value]="comune.id" *ngFor="let comune of comuni">{{comune.nome}}</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
+          <label for="provincia">Provincia</label>
+          <select name="provincia" id="provincia" formControlName="provincia" required class="form-select form-select-sm">
+            <option [value]="provincia.id" *ngFor="let provincia of province">{{provincia.nome}}</option>
+          </select>
+        </div>
+
+        <button class="btn btn-success mt-5 mb-1" [disabled]="form.invalid"  type="submit">
+          Modifica Cliente
+        </button>
+      </form>
+    </div>
+  </div>

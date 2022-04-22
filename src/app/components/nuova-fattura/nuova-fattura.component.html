@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="container text-center p-5 mt-5 mb-5 rounded">
+  <h1>Nuova Fattura</h1>
+  <div class="row justify-content-center">
+      <form [formGroup]="form" (submit)="onsubmit(form)" *ngIf="cliente">
+        <div class="form-group mb-2">
+          <label for="data">Data *</label>
+          <input formControlName="data" name="data" class="form-control" type="date" id="data" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="numero">Numero *</label>
+          <input formControlName="numero" name="numero" class="form-control" type="text" id="numero" required />
+        </div>
+        <div class="form-group mb-2">
+          <label for="anno">Anno *</label>
+          <input formControlName="anno" name="anno" class="form-control" type="text" id="anno" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="importo">Importo *</label>
+          <input formControlName="importo" name="importo" class="form-control" type="number" id="importo" required />
+        </div>
+        <div class="form-group mb-2">
+          <label for="cliente">Cliente *</label>
+          <input formControlName="cliente" name="cliente" class="form-control" type="text" id="cliente" required [(ngModel)]="cliente.ragioneSociale" readonly/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="idCliente">Id Cliente *</label>
+          <input formControlName="idCliente" name="idCliente" class="form-control" type="text" id="idCliente" required [(ngModel)]="cliente.id" readonly/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="stato">Stato *</label>
+          <select name="stato" id="stato" formControlName="stato" required class="form-select form-select-sm">
+            <option [value]="tipo.id" *ngFor="let tipo of tipi;">{{tipo.nome}}</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary mt-3 mb-3" [disabled]="form.invalid"  type="submit">
+          Crea
+        </button>
+        <button class="btn btn-danger mt-3 m-3" type="button" [routerLink]="['/fatture-cliente',cliente.id]">Torna al cliente</button>
+      </form>
+    </div>
+  </div>

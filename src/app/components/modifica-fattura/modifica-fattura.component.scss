@@ -1,0 +1,23 @@
+.container.text-center.p-5.rounded {
+  background-color: #212529;
+  font-size: 25px;
+  color: white;
+  max-width: 600px;
+  box-shadow: 5px 5px 15px -2px #000000;
+}
+
+input:read-only{
+  background-color: rgb(130, 126, 126);
+}
+
+input{
+  font-size: 1.5rem;
+}
+
+.form-select-sm{
+  font-size: 1.5rem;
+}
+
+button.btn.btn-danger.mt-3.mb-3 {
+  font-size: 1.5rem;
+}

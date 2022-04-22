@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div style="margin-top:50px;" class="container mt-5"*ngIf="mieFatture; else elseTemplate">
+<button class="btn btn-success" [routerLink]="['/nuova-fattura',idCliente]"> Nuova Fattura 📃</button>
+
+  <div class="row">
+
+    <div class="col-3 mb-5" *ngFor="let fattura of mieFatture; let i = index">
+      <div class="card-sl" >
+
+
+        <a class="card-action" (click)="rimuoviFatture(fattura.id)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+</svg>
+        </a>
+        <div class="card-heading">
+          <h5>Cliente: </h5>
+            <p>{{mieFatture[i].cliente.ragioneSociale}}</p>
+        </div>
+        <div class="card-text">
+          <h5>Numero Fattura: {{mieFatture[i].numero}}</h5>
+          <h5>Anno: {{mieFatture[i].anno}}</h5>
+          <h5>{{mieFatture[i].data | date:'medium'}}</h5>
+        </div>
+        <div class="card-text">
+          <h5>Importo: {{mieFatture[i].importo | currency: 'EUR'}} 💵</h5>
+          <h5 *ngIf="fattura.stato.nome === 'PAGATA'">
+            {{fattura.stato.nome}} ✅
+          </h5>
+          <h5 *ngIf="fattura.stato.nome === 'NON PAGATA'">
+            {{fattura.stato.nome}} ❌
+          </h5>
+        </div>
+        <a [routerLink]="['/modifica-fattura',fattura.id]" class="card-button"> Modifica ✏</a>
+      </div>
+
+    </div>
+
+  </div>
+<nav aria-label="Page navigation example bg-dark text-white">
+      <ul class="pagination">
+        <li *ngIf="!pagination.first" class="page-item"><button class="page-link bg-dark text-white" (click)="paginaPrecedente()">Precedente</button></li>
+        <li class="page-item"><button class="page-link bg-dark text-white" >Pagina {{pageNumberText}} di {{pageMaxText}}</button></li>
+        <li *ngIf="!pagination.last" class="page-item"><button class="page-link bg-dark text-white" (click)="paginaSuccessiva()">Prossima</button></li>
+      </ul>
+    </nav>
+</div>
+
+
+<ng-template #elseTemplate>
+    <div class="spinner-grow" role="status">
+    </div>
+  </ng-template>

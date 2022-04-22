@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<div class="container mt-5"*ngIf="clienti; else elseTemplate">
+  <div>
+  <table class="table table-dark" >
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Ragione Sociale</th>
+        <th scope="col">Email</th>
+        <th scope="col">Parita Iva</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"><button class="btn btn-success" [routerLink]="['/nuovo-cliente']"> Nuovo Cliente <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+          <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+        </svg></button></th>
+        <th scope="col">
+          <input type="text" placeholder="Cerca cliente" #box (keyup)="getKeyUp(box.value)"/>
+
+        </th>
+        <th scope="col"><button type="button" class="btn btn-primary" (click)="getValue(box.value)">
+          Cerca  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+          </button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clienti">
+        <th scope="row">{{cliente.id}}</th>
+        <td>{{cliente.ragioneSociale}}</td>
+        <td>{{cliente.email}}</td>
+        <td>{{cliente.partitaIva}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-info" [routerLink]="['/fatture-cliente',cliente.id]">Fatture 📃</button></td>
+        <td><button class="btn btn-warning" [routerLink]="['/modifica-cliente',cliente.id]">Modifica ✏</button></td>
+        <td><button class="btn btn-danger" (click)="elimina(cliente.id)">Elimina🗑</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example bg-dark text-white">
+  <ul class="pagination">
+    <li *ngIf="!pagination.first" class="page-item"><button class="page-link bg-dark text-white" (click)="paginaPrecedente()">Precedente</button></li>
+    <li class="page-item"><button class="page-link bg-dark text-white" >Pagina {{pageNumberText}} di {{pageMaxText}}</button></li>
+    <li *ngIf="!pagination.last" class="page-item"><button class="page-link bg-dark text-white" (click)="paginaSuccessiva()">Prossima</button></li>
+  </ul>
+</nav>
+</div>
+</div>
+<ng-template #elseTemplate>
+    <div class="spinner-grow" role="status">
+    </div>
+  </ng-template>

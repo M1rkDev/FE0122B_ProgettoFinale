@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<div class="container mt-5"*ngIf="utenti; else elseTemplate">
+  <div>
+  <table class="table table-striped table-dark" >
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ruolo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let utente of utenti">
+        <th scope="row">{{utente.id}}</th>
+        <td>{{utente.username}}</td>
+        <td>{{utente.email}}</td>
+        <td *ngIf="utente.roles[0].roleName == 'ROLE_USER'"> User</td>
+        <td *ngIf="utente.roles[0].roleName == 'ROLE_ADMIN'"> Admin</td>
+      </tr>
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example bg-dark text-white">
+  <ul class="pagination">
+    <li *ngIf="!pagination.first" class="page-item"><button class="page-link bg-dark text-white" (click)="paginaPrecedente()">Precedente</button></li>
+    <li class="page-item"><button class="page-link bg-dark text-white" >Pagina {{pageNumberText}} di {{pageMaxText}}</button></li>
+    <li *ngIf="!pagination.last" class="page-item"><button class="page-link bg-dark text-white" (click)="paginaSuccessiva()">Prossima</button></li>
+  </ul>
+</nav>
+</div>
+</div>
+
+<ng-template #elseTemplate>
+    <div class="spinner-grow" role="status">
+    </div>
+  </ng-template>

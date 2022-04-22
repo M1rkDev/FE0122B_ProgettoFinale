@@ -1,0 +1,116 @@
+<div id="sfondo" class="pt-5">
+  <div class="container text-center p-5 rounded">
+    <div class="row justify-content-center">
+      <div *ngIf="errore" class="alert alert-danger">
+        {{errore}}
+      </div>
+        <form [formGroup]="form" (submit)="onsubmit(form)">
+          <div class="form-group mb-2">
+            <label for="username">Nome</label>
+            <input formControlName="username" name="username" class="form-control" type="text" id="username" required minlength="5"/>
+            <div
+            *ngIf="
+              controlliForm('username').errors &&
+              controlliForm('username').touched
+            "
+            class="alert alert-danger mt-1"
+            role="alert"
+          >
+            <span *ngIf="controlloErrori('username', 'required')"
+              >Campo obbligatorio</span
+            >
+            <span *ngIf="controlloErrori('username', 'minlength')">
+              Hai scritto
+              {{
+                controlloErrori("username", "minlength").actualLength == 1
+                  ? controlloErrori("username", "minlength").actualLength +
+                    " carattere"
+                  : controlloErrori("username", "minlength").actualLength +
+                    " caratteri"
+              }}, devono essere minimo
+              {{
+                controlloErrori("username", "minlength").requiredLength
+              }}
+              caratteri.
+            </span>
+          </div>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="email">Email</label>
+            <input formControlName="email" name="email" class="form-control" type="email" id="email" required/>
+            <div
+            *ngIf="
+              controlliForm('email').errors &&
+              controlliForm('email').touched
+            "
+            class="alert alert-danger mt-1"
+            role="alert"
+          >
+            <span *ngIf="controlloErrori('email', 'required')"
+              >Campo obbligatorio</span
+            >
+
+          </div>
+          </div>
+          <div class="form-group mb-2">
+            <label for="password">Password</label>
+            <input formControlName="password" name="password" class="form-control" type="password" id="pass" required minlength="6"/>
+            <div
+            *ngIf="
+              controlliForm('password').errors &&
+              controlliForm('password').touched
+            "
+            class="alert alert-danger mt-1"
+            role="alert"
+          >
+            <span *ngIf="controlloErrori('password', 'required')"
+              >Campo obbligatorio</span
+            >
+            <span *ngIf="controlloErrori('password', 'minlength')">
+              Hai scritto
+              {{
+                controlloErrori("password", "minlength").actualLength == 1
+                  ? controlloErrori("password", "minlength").actualLength +
+                    " carattere"
+                  : controlloErrori("password", "minlength").actualLength +
+                    " caratteri"
+              }}, devono essere minimo
+              {{
+                controlloErrori("password", "minlength").requiredLength
+              }}
+              caratteri.
+            </span>
+          </div>
+          </div>
+          <div class="form-group mb-2">
+            <h4>Tipo di utente:</h4>
+            <select formControlName="role" class="form-select form-select-sm" id="role" required>
+              <option value="user">USER</option>
+              <option value="admin">ADMIN</option>
+            </select>
+            <div
+            *ngIf="
+              controlliForm('role').errors &&
+              controlliForm('role').touched
+            "
+            class="alert alert-danger mt-1"
+            role="alert"
+          >
+            <span *ngIf="controlloErrori('role', 'required')"
+              >Campo obbligatorio</span
+            >
+
+          </div>
+          </div>
+          <button class="btn btn-primary mt-3 mb-3" [disabled]="form.invalid"  type="submit">
+            Registrati
+          </button>
+          <button *ngIf="utenteLoggato" class="btn btn-danger m-3"  type="button" [routerLink]="['/']">
+            Torna alla home
+          </button>
+        </form>
+        <p>Sei già registrato? <a [routerLink]="['/login']">Clicca qui per entrare</a></p>
+      </div>
+    </div>
+</div>

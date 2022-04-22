@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<div class="container text-center p-5 mt-5 mb-5 rounded">
+  <h1>Modifica Fattura</h1>
+  <div class="row justify-content-center">
+      <form [formGroup]="form" (submit)="onsubmit(form)" *ngIf="fattura">
+        <div class="form-group mb-2">
+          <label for="id">Id</label>
+          <input formControlName="id" name="id" class="form-control" type="text" id="id" required [(ngModel)]="fattura.id" readonly/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="data">Data</label>
+          <input formControlName="data" name="data" class="form-control" type="text" id="data" required [(ngModel)]="fattura.data" readonly/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="numero">Numero</label>
+          <input formControlName="numero" name="numero" class="form-control" type="text" id="numero" required [(ngModel)]="fattura.numero" readonly/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="anno">Anno</label>
+          <input formControlName="anno" name="anno" class="form-control" type="text" id="anno" required [(ngModel)]="fattura.anno" readonly/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="importo">Importo</label>
+          <input formControlName="importo" name="importo" class="form-control" type="text" id="importo" required [(ngModel)]="fattura.importo" readonly/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="cliente">Cliente</label>
+          <input formControlName="cliente" name="cliente" class="form-control" type="text" id="cliente" required [(ngModel)]="fattura.cliente.ragioneSociale" readonly/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="idCliente">Id Cliente</label>
+          <input formControlName="idCliente" name="idCliente" class="form-control" type="text" id="idCliente" required [(ngModel)]="fattura.cliente.id" readonly/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="stato">Stato</label>
+          <select name="stato" id="stato" formControlName="stato" required class="form-select form-select-sm">
+            <option [value]="tipo.id" *ngFor="let tipo of tipi;">{{tipo.nome}}</option>
+          </select>
+        </div>
+
+        <button class="btn btn-danger mt-3 mb-3 " [disabled]="form.invalid"  type="submit">
+          Modifica
+        </button>
+      </form>
+    </div>
+  </div>

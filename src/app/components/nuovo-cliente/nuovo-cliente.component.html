@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+<div class="container text-center p-5 mt-5 mb-5 rounded">
+  <h1>Crea un nuovo cliente</h1>
+  <div class="row justify-content-center">
+      <form [formGroup]="form" (submit)="onsubmit(form)">
+        <div class="form-group mb-2">
+          <label for="ragioneSociale">Ragione Sociale *</label>
+          <input formControlName="ragioneSociale" name="ragioneSociale" class="form-control" type="text" id="ragioneSociale" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="partitaIva">Partita Iva *</label>
+          <input formControlName="partitaIva" name="partitaIva" class="form-control" type="text" id="partitaIva" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="email">Email *</label>
+          <input formControlName="email" name="email" class="form-control" type="email" id="email" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="nomeContatto">Nome Contatto *</label>
+          <input formControlName="nomeContatto" name="nomeContatto" class="form-control" type="text" id="nomeContatto" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="cognomeContatto">Cognome Contatto *</label>
+          <input formControlName="cognomeContatto" name="cognomeContatto" class="form-control" type="text" id="cognomeContatto" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="pec">Pec *</label>
+          <input formControlName="pec" name="pec" class="form-control" type="text" id="pec" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="tipoCliente">Tipo Cliente *</label>
+          <select name="tipoCliente" id="tipoCliente" formControlName="tipoCliente" required class="form-select form-select-sm">
+            <option [value]="tipo" *ngFor="let tipo of tipi">{{tipo}}</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
+          <label for="emailContatto">Email Contatto *</label>
+          <input formControlName="emailContatto" name="emailContatto" class="form-control" type="email" id="emailContatto" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="via">Via *</label>
+          <input formControlName="via" name="via" class="form-control" type="text" id="via" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="civico">Civico *</label>
+          <input formControlName="civico" name="civico" class="form-control" type="text" id="civico" required/>
+        </div>
+        <div class="form-group mb-2">
+          <label for="cap">Cap *</label>
+          <input formControlName="cap" name="cap" class="form-control" type="text" id="cap" required/>
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="comune">Comune *</label>
+          <select name="comune" id="comune" formControlName="comune" required class="form-select form-select-sm">
+            <option [value]="comune.id" *ngFor="let comune of comuni">{{comune.nome}}</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-2">
+          <label for="provincia">Provincia *</label>
+          <select name="provincia" id="provincia" formControlName="provincia" required class="form-select form-select-sm">
+            <option [value]="provincia.id" *ngFor="let provincia of province">{{provincia.nome}}</option>
+          </select>
+        </div>
+
+        <button class="btn btn-success mt-4 mb-3" [disabled]="form.invalid"  type="submit">
+          Registra Cliente
+        </button>
+        <button class="btn btn-danger mt-4 m-3" type="button" [routerLink]="['/clienti']">Torna ai clienti</button>
+      </form>
+    </div>
+  </div>
